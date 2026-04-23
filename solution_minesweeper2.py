@@ -2,10 +2,10 @@ import sys
 import time
 from datetime import datetime, timezone
 
-_PUZZLES = {
+from puzzle_minesweeper2 import _PUZZLES as _PUZZLE_DATA
+
+_SOLUTIONS = {
     "easy": {
-        "rows": 6, "cols": 6, "num_mines": 6,
-        "url_body": "g1000012221001h1002342112g2g11g2211",
         "solution": [
             [1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
@@ -16,8 +16,6 @@ _PUZZLES = {
         ],
     },
     "medium": {
-        "rows": 9, "cols": 9, "num_mines": 15,
-        "url_body": "001g2110000112g100000012210000001g1000001222111001g23h433323m12g324g421111",
         "solution": [
             [0, 0, 0, 1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 1, 0, 0, 0],
@@ -31,11 +29,6 @@ _PUZZLES = {
         ],
     },
     "hard": {
-        "rows": 12, "cols": 12, "num_mines": 30,
-        "url_body": (
-            "1g101121212g11101g2g3g42001232213h1112h20023311g24g4122g101234g3g3g3"
-            "1001h2224g2000123212g32110001g12g32g2111233213g4g1g11h213g421111222g22g1"
-        ),
         "solution": [
             [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0],
@@ -52,6 +45,10 @@ _PUZZLES = {
         ],
     },
 }
+
+_PUZZLES = {}
+for _lvl in _PUZZLE_DATA:
+    _PUZZLES[_lvl] = {**_PUZZLE_DATA[_lvl], **_SOLUTIONS[_lvl]}
 
 
 def _build_moves(rows, cols, solution):
@@ -114,7 +111,7 @@ if __name__ == "__main__":
 
     level = sys.argv[1] if len(sys.argv) > 1 else "easy"
     if level not in _PUZZLES:
-        print(f"Usage: python custom_minesweeper2.py [easy|medium|hard]")
+        print(f"Usage: python solution_minesweeper2.py [easy|medium|hard]")
         sys.exit(1)
 
     t0 = time.monotonic()

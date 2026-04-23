@@ -16,15 +16,6 @@ _PUZZLES = {
             [10, 11, 11, 9, 9, 9, 9],
         ],
         "clues": {0: 1, 1: 2, 3: 1, 7: 3, 8: 1, 9: 3},
-        "solution": [
-            [0, 0, 0, 0, 0, 1, 0],
-            [1, 0, 0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0, 0, 1],
-            [0, 1, 0, 0, 1, 0, 0],
-            [1, 0, 0, 1, 0, 0, 0],
-            [0, 1, 0, 0, 0, 1, 0],
-            [0, 0, 0, 1, 0, 0, 1],
-        ],
     },
     "medium": {
         "rows": 8, "cols": 10,
@@ -40,16 +31,6 @@ _PUZZLES = {
             [12, 12, 12, 14, 14, 13, 13, 13, 15, 15],
         ],
         "clues": {3: 0, 4: 2, 5: 2, 6: 2, 7: 3, 8: 3, 9: 2, 10: 3, 11: 2, 12: 1},
-        "solution": [
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
-            [1, 0, 1, 0, 1, 0, 0, 1, 0, 1],
-            [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
-            [0, 1, 0, 1, 0, 0, 1, 0, 0, 0],
-            [1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
-            [0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
-            [0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
-        ],
     },
     "hard": {
         "rows": 14, "cols": 24,
@@ -80,46 +61,13 @@ _PUZZLES = {
             31: 2, 32: 1, 33: 4, 34: 2, 35: 5, 37: 3, 38: 2,
             40: 0, 41: 1, 44: 3, 45: 1, 46: 1, 48: 0, 51: 3,
         },
-        "solution": [
-            [0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0],
-            [0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,0,1,0,0,0,1,0,1,0],
-            [1,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0],
-            [0,1,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0],
-            [0,0,1,0,1,0,1,0,0,1,0,0,1,0,0,0,0,1,0,1,0,0,0,1],
-            [0,1,0,0,0,1,0,0,1,0,1,0,0,1,0,1,0,0,1,0,0,0,1,0],
-            [0,0,0,0,1,0,1,0,0,0,0,1,0,0,1,0,1,0,0,1,0,1,0,0],
-            [1,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,1,0,0,1],
-            [0,1,0,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,0,1,0,1,0,0],
-            [0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0],
-            [1,0,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,0,0,1,0,0,0,0],
-            [0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,0],
-            [0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,0,1,0,0,0,0,1],
-            [0,0,1,0,0,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0],
-        ],
     },
 }
 
 
-def _build_moves(rows, cols, solution):
-    full, req, hint = [], [], []
-    for r in range(rows):
-        for c in range(cols):
-            x, y = 1 + c * 2, 1 + r * 2
-            if solution[r][c] == 1:
-                m = f"mouse,left,{x},{y}"
-                full.append(m)
-                req.append(m)
-            else:
-                m = f"mouse,right,{x},{y}"
-                full.append(m)
-                hint.append(m)
-    return full, req, hint
-
-
-def generate_custom_heyawake(level="easy"):
+def generate_puzzle_heyawake(level="easy"):
     p = _PUZZLES[level]
     rows, cols = p["rows"], p["cols"]
-    full, req, hint = _build_moves(rows, cols, p["solution"])
     now = datetime.now(timezone.utc).isoformat()
 
     return {
@@ -129,8 +77,8 @@ def generate_custom_heyawake(level="easy"):
         "width": cols,
         "height": rows,
         "area": rows * cols,
-        "number_required_moves": len(req),
-        "number_total_solution_moves": len(full),
+        "number_required_moves": 0,
+        "number_total_solution_moves": 0,
         "puzzlink_url": f"https://puzz.link/p?heyawake/{cols}/{rows}/{p['url_body']}",
         "source": {
             "site_name": "ppbench_golden",
@@ -149,9 +97,9 @@ def generate_custom_heyawake(level="easy"):
         },
         "created_at": now,
         "solution": {
-            "moves_full": full,
-            "moves_required": req,
-            "moves_hint": hint,
+            "moves_full": [],
+            "moves_required": [],
+            "moves_hint": [],
         },
     }
 
@@ -161,11 +109,11 @@ if __name__ == "__main__":
 
     level = sys.argv[1] if len(sys.argv) > 1 else "easy"
     if level not in _PUZZLES:
-        print(f"Usage: python custom_heyawake.py [easy|medium|hard]")
+        print(f"Usage: python puzzle_heyawake.py [easy|medium|hard]")
         sys.exit(1)
 
     t0 = time.monotonic()
-    puzzle_data = generate_custom_heyawake(level)
+    puzzle_data = generate_puzzle_heyawake(level)
     elapsed = time.monotonic() - t0
 
     print(json.dumps(puzzle_data, indent=2, default=str))
@@ -173,6 +121,5 @@ if __name__ == "__main__":
     print(f"\nLevel: {level}")
     print(f"Grid: {meta['db_w']}×{meta['db_h']}")
     print(f"Rooms: {meta['num_rooms']} ({meta['num_clued_rooms']} clued)")
-    print(f"Shaded cells: {puzzle_data['number_required_moves']}")
     print(f"Generated in {elapsed:.4f}s")
     print(f"\nPlay: {puzzle_data['puzzlink_url']}")

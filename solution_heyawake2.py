@@ -2,10 +2,10 @@ import sys
 import time
 from datetime import datetime, timezone
 
-_PUZZLES = {
+from puzzle_heyawake2 import _PUZZLES as _PUZZLE_DATA
+
+_SOLUTIONS = {
     "easy": {
-        "rows": 8, "cols": 8,
-        "url_body": "022gkf3gc2007o00o01s01v07",
         "solution": [
             [0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 1, 0, 0],
@@ -18,8 +18,6 @@ _PUZZLES = {
         ],
     },
     "medium": {
-        "rows": 8, "cols": 8,
-        "url_body": "fismnltf9aag603j1pg0v00gh0g0h221g2h21g",
         "solution": [
             [0, 1, 0, 0, 1, 0, 0, 0],
             [0, 0, 0, 1, 0, 0, 1, 0],
@@ -32,11 +30,6 @@ _PUZZLES = {
         ],
     },
     "hard": {
-        "rows": 13, "cols": 17,
-        "url_body": (
-            "2401200h0082841420i1090g4g82841401000g00800000001vvvg"
-            "0000000000000003g003vvv00000004309-1575g87"
-        ),
         "solution": [
             [1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -54,6 +47,10 @@ _PUZZLES = {
         ],
     },
 }
+
+_PUZZLES = {}
+for _lvl in _PUZZLE_DATA:
+    _PUZZLES[_lvl] = {**_PUZZLE_DATA[_lvl], **_SOLUTIONS[_lvl]}
 
 
 def _build_moves(rows, cols, solution):
@@ -116,7 +113,7 @@ if __name__ == "__main__":
 
     level = sys.argv[1] if len(sys.argv) > 1 else "easy"
     if level not in _PUZZLES:
-        print(f"Usage: python custom_heyawake2.py [easy|medium|hard]")
+        print(f"Usage: python solution_heyawake2.py [easy|medium|hard]")
         sys.exit(1)
 
     t0 = time.monotonic()

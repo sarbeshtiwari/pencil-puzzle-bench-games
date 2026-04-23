@@ -2,20 +2,10 @@ import sys
 import time
 from datetime import datetime, timezone
 
-_PUZZLES = {
+from puzzle_sudoku2 import _PUZZLES as _PUZZLE_DATA
+
+_SOLUTIONS = {
     "easy": {
-        "url_body": "t289h283g9g6j1g7g3h346g827h1i5g4h678g4g2l638p",
-        "clue_grid": [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 2, 8, 9, 0],
-            [0, 2, 8, 3, 0, 9, 0, 6, 0],
-            [0, 0, 0, 1, 0, 7, 0, 3, 0],
-            [0, 3, 4, 6, 0, 8, 2, 7, 0],
-            [0, 1, 0, 0, 0, 5, 0, 4, 0],
-            [0, 6, 7, 8, 0, 4, 0, 2, 0],
-            [0, 0, 0, 0, 0, 6, 3, 8, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        ],
         "solution": [
             [6, 9, 3, 7, 8, 1, 4, 5, 2],
             [1, 7, 5, 4, 6, 2, 8, 9, 3],
@@ -29,18 +19,6 @@ _PUZZLES = {
         ],
     },
     "medium": {
-        "url_body": "g69j3g5i48h98g2i6k2h4s7h9k8i5g12h58i4g1j82g",
-        "clue_grid": [
-            [0, 6, 9, 0, 0, 0, 0, 3, 0],
-            [5, 0, 0, 0, 4, 8, 0, 0, 9],
-            [8, 0, 2, 0, 0, 0, 6, 0, 0],
-            [0, 0, 0, 2, 0, 0, 4, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 7, 0, 0, 9, 0, 0, 0],
-            [0, 0, 8, 0, 0, 0, 5, 0, 1],
-            [2, 0, 0, 5, 8, 0, 0, 0, 4],
-            [0, 1, 0, 0, 0, 0, 8, 2, 0],
-        ],
         "solution": [
             [4, 6, 9, 7, 5, 2, 1, 3, 8],
             [5, 3, 1, 6, 4, 8, 2, 7, 9],
@@ -54,18 +32,6 @@ _PUZZLES = {
         ],
     },
     "hard": {
-        "url_body": "h836m8m9j4m35h4g5g1g2h63m2j7m7m546h",
-        "clue_grid": [
-            [0, 0, 8, 3, 6, 0, 0, 0, 0],
-            [0, 0, 0, 8, 0, 0, 0, 0, 0],
-            [0, 0, 9, 0, 0, 0, 0, 4, 0],
-            [0, 0, 0, 0, 0, 0, 3, 5, 0],
-            [0, 4, 0, 5, 0, 1, 0, 2, 0],
-            [0, 6, 3, 0, 0, 0, 0, 0, 0],
-            [0, 2, 0, 0, 0, 0, 7, 0, 0],
-            [0, 0, 0, 0, 0, 7, 0, 0, 0],
-            [0, 0, 0, 0, 5, 4, 6, 0, 0],
-        ],
         "solution": [
             [4, 1, 8, 3, 6, 2, 5, 9, 7],
             [2, 7, 5, 8, 4, 9, 1, 6, 3],
@@ -79,6 +45,10 @@ _PUZZLES = {
         ],
     },
 }
+
+_PUZZLES = {}
+for _lvl in _PUZZLE_DATA:
+    _PUZZLES[_lvl] = {**_PUZZLE_DATA[_lvl], **_SOLUTIONS[_lvl]}
 
 
 def _build_moves(clue_grid, solution):
@@ -136,7 +106,7 @@ if __name__ == "__main__":
 
     level = sys.argv[1] if len(sys.argv) > 1 else "easy"
     if level not in _PUZZLES:
-        print(f"Usage: python custom_sudoku2.py [easy|medium|hard]")
+        print(f"Usage: python solution_sudoku2.py [easy|medium|hard]")
         sys.exit(1)
 
     t0 = time.monotonic()

@@ -2,10 +2,10 @@ import sys
 import time
 from datetime import datetime, timezone
 
-_PUZZLES = {
+from puzzle_country2 import _PUZZLES as _PUZZLE_DATA
+
+_SOLUTIONS = {
     "easy": {
-        "rows": 5, "cols": 5,
-        "url_body": "013n0vu03154g2",
         "moves_required": [
             "mouse,left,1,3,1,5", "mouse,left,5,3,5,5",
             "mouse,left,1,5,1,7", "mouse,left,9,5,9,7",
@@ -48,8 +48,6 @@ _PUZZLES = {
         ],
     },
     "medium": {
-        "rows": 10, "cols": 10,
-        "url_body": "24gelnnvem7u6vd9bg7tbqlh3i9q8s4nda1vg43j6h1k2h5",
         "moves_required": [
             "mouse,left,3,1,3,3", "mouse,left,15,1,15,3",
             "mouse,left,17,1,17,3", "mouse,left,19,1,19,3",
@@ -214,8 +212,6 @@ _PUZZLES = {
         ],
     },
     "hard": {
-        "rows": 12, "cols": 12,
-        "url_body": "5k2qplcqndbklaahahuaeja945000or1o66u08e00vvocvc7jj37p01351j34366g134k3g225g",
         "moves_required": [
             "mouse,left,7,1,7,3", "mouse,left,11,1,11,3",
             "mouse,left,17,1,17,3", "mouse,left,19,1,19,3",
@@ -467,6 +463,10 @@ _PUZZLES = {
     },
 }
 
+_PUZZLES = {}
+for _lvl in _PUZZLE_DATA:
+    _PUZZLES[_lvl] = {**_PUZZLE_DATA[_lvl], **_SOLUTIONS[_lvl]}
+
 
 def generate_custom_country2(level="easy"):
     p = _PUZZLES[level]
@@ -513,7 +513,7 @@ if __name__ == "__main__":
 
     level = sys.argv[1] if len(sys.argv) > 1 else "easy"
     if level not in _PUZZLES:
-        print("Usage: python custom_country2.py [easy|medium|hard]")
+        print("Usage: python solution_country2.py [easy|medium|hard]")
         sys.exit(1)
 
     t0 = time.monotonic()

@@ -2,13 +2,6 @@ import sys
 import time
 from datetime import datetime, timezone
 
-# ---------------------------------------------------------------------------
-# 3 hardcoded minesweeper puzzles (generated with seed=42)
-# Easy:   6×6,  6 mines  — URL body uses puzz.link 'mines' variety
-# Medium: 9×9, 15 mines
-# Hard:  12×12, 30 mines
-# ---------------------------------------------------------------------------
-
 _PUZZLES = {
     "easy": {
         "rows": 6, "cols": 6, "num_mines": 6,

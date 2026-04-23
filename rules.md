@@ -73,13 +73,17 @@ Classic Minesweeper — all cells start hidden. Reveal safe cells and flag mines
 4. **Mine hit = game over** — revealing a mine cell ends the game immediately; all mines are shown
 5. **Win condition** — reveal every non-mine cell to win. Flagging is optional
 
+6. **No consecutive same-row reveals** — after revealing a cell, your next reveal must be in a different row. The cell will flash red and revert if you try to reveal in the same row consecutively. **Deadlock bypass**: if all remaining hidden safe cells are in the same row, same-row reveals are allowed
+7. **No 2×2 mine block** — no 2×2 square of cells can all be mines. Checked when you click "Check Answer"
+8. **Mine density ≤ 25%** — the total number of mines must not exceed 25% of the grid area. Checked when you click "Check Answer"
+
 ### puzz.link Controls
 
 - Left-click a hidden cell to reveal it
 - Right-click a hidden cell to toggle a flag (🚩)
 - Flagged cells cannot be revealed (unflag first)
-- Revealed cells cannot be changed
-- Click "Check Answer" to verify win/loss state
+- Revealing in the same row as last reveal is blocked (rule 6), unless deadlocked
+- 2×2 mine block and mine density are validated on "Check Answer" (rules 7–8)
 
 ## Country Road
 
@@ -91,11 +95,16 @@ Draw a single closed loop through cell centers on a grid divided into rooms.
 4. **Every room visited** — the loop must pass through every room (at least one cell on the loop per room)
 5. **No adjacent grass across borders** — two cells on opposite sides of a room boundary cannot both be off the loop
 
+6. **No consecutive same-room lines** — after drawing a line in a room, your next line-drawing action must start in a different room. The cell will flash red and revert if you try to start drawing in the same room consecutively
+7. **Minimum loop coverage** — at least 50% of all grid cells must be on the loop. Checked when you click "Check Answer"
+8. **At most 1 empty row** — at most one row in the grid may have zero cells on the loop. Checked when you click "Check Answer"
+
 ### puzz.link Controls
 
 - Left-click and drag between adjacent cells to draw a line segment
 - Right-click a cell or border to mark it as "not on the loop" (green ×)
-- The loop must satisfy all rules when you click "Check Answer"
+- Starting a line in the same room as the last draw action is blocked (rule 6)
+- Loop coverage and empty-row limits are validated on "Check Answer" (rules 7–8)
 
 ---
 
@@ -105,6 +114,7 @@ All standard Sudoku rules (1–5) apply.
 
 6. **Row alternation** — consecutive entries must be placed in different rows. Cell will flash red and revert if you try to enter in the same row as the last entry. **Deadlock bypass**: if every remaining empty cell is in the same row, same-row input is allowed
 7. **Box alternation** — consecutive entries must be placed in different 3×3 boxes. Cell will flash red and revert if you try to enter in the same box as the last entry. **Deadlock bypass**: if every remaining empty cell is in the same box, same-box input is allowed
+8. **Even-digit balance** — every row must contain exactly 4 even digits (2, 4, 6, 8). Checked when you click "Check Answer"
 
 ### puzz.link Controls
 
@@ -112,6 +122,7 @@ All standard Sudoku rules (1–5) apply.
 - Arrow keys to navigate between cells
 - Entering in the same row as last entry is blocked (rule 6), unless deadlocked
 - Entering in the same 3×3 box as last entry is blocked (rule 7), unless deadlocked
+- Even-digit balance is validated on "Check Answer" (rule 8)
 
 ## Heyawake 2
 
@@ -119,13 +130,14 @@ All standard Heyawake rules (1–5) apply with strict R1 (zero adjacent pairs al
 
 6. **Half-grid alternation** — you must alternate between shading cells in the left half (cols 0 to cols/2−1) and right half (cols/2 to cols−1) of the grid. After shading in one half, your next shade must be in the other half. Cell flashes red and reverts otherwise
 7. **Column shade balance** — no single column can have more than ⌈rows/2⌉ shaded cells. Checked when you click "Check Answer"
+8. **Shading density 10–50%** — the total number of shaded cells must be at least 10% and at most 50% of the grid area. Checked when you click "Check Answer"
 
 ### puzz.link Controls
 
 - Left-click a cell to shade it (black)
 - Right-click a cell to mark it white (dot)
 - Shading in the same grid half consecutively is blocked (rule 6)
-- Column shade limit is validated on "Check Answer" (rule 7)
+- Column shade limit and shading density are validated on "Check Answer" (rules 7–8)
 - Adjacent shading: 0 pairs allowed (strict R1)
 
 ## Minesweeper 2
@@ -133,19 +145,25 @@ All standard Heyawake rules (1–5) apply with strict R1 (zero adjacent pairs al
 All standard Minesweeper rules (1–5) apply.
 
 6. **Lucky streak** — every 3rd consecutive safe cell you reveal triggers a bonus: one additional random hidden safe cell is automatically revealed for free. The streak counter is displayed in orange at the top. Streak resets on game-over
+7. **Row mine cap** — no single row can have more than ⌈2·cols/3⌉ mines (e.g., in a 9-column grid, max 6 per row). Checked when you click "Check Answer"
+8. **No 2×2 mine block** — no 2×2 square of cells can all be mines. Checked when you click "Check Answer"
 
 ### puzz.link Controls
 
 - Same as standard Minesweeper
 - Watch the "Streak: N (bonus in M)" counter for your next auto-reveal
+- Row mine cap and 2×2 block are validated on "Check Answer" (rules 7–8)
 
 ## Country Road 2
 
 All standard Country Road rules (1–5) apply.
 
 6. **Turn balance** — the total number of turns (corners) in the loop must not exceed twice the number of straight segments. Checked when you click "Check Answer"
+7. **Maximum loop coverage** — at most 85% of all grid cells may be on the loop. Checked when you click "Check Answer"
+8. **At most 1 empty row** — at most one row in the grid may have zero cells on the loop. Checked when you click "Check Answer"
 
 ### puzz.link Controls
 
 - Same as standard Country Road
 - Turn/straight ratio is validated on "Check Answer" (rule 6)
+- Loop coverage cap and empty-row limit are validated on "Check Answer" (rules 7–8)
