@@ -4,16 +4,16 @@ from datetime import datetime, timezone
 
 _PUZZLES = {
     "easy": {
-        "rows": 5, "cols": 5,
-        "url_body": "013n0vu03154g2",
+        "rows": 10, "cols": 10,
+        "url_body": "1hufproq6nb9eil52aeehpcsru13esjj0cfg7332g3g34g51i1g251613",
     },
     "medium": {
-        "rows": 10, "cols": 10,
-        "url_body": "24gelnnvem7u6vd9bg7tbqlh3i9q8s4nda1vg43j6h1k2h5",
+        "rows": 18, "cols": 10,
+        "url_body": "8goih3264i4gd0i1k284g905266cc8og07v808700fsfuo10201o0007vbo8304s0vsg44ga23g4g434heg113",
     },
     "hard": {
-        "rows": 12, "cols": 12,
-        "url_body": "5k2qplcqndbklaahahuaeja945000or1o66u08e00vvocvc7jj37p01351j34366g134k3g225g",
+        "rows": 10, "cols": 18,
+        "url_body": "40401020240g310018104g80g20440gg00vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvo3h4h5q4i5h6l",
     },
 }
 
