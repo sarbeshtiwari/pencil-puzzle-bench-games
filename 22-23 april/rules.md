@@ -5,7 +5,7 @@ All custom games have 3 difficulty levels: **easy**, **medium**, **hard**.
 | Game | Easy | Medium | Hard |
 |---|---|---|---|
 | Sudoku | 9×9, 31 clues | 9×9, 22 clues | 9×9, 20 clues |
-| Heyawake | 7×7, 10 rooms | 10×8, 11 rooms | 24×14, 40 rooms |
+| Heyawake | 7×7, 12 rooms | 10×8, 16 rooms | 24×14, 52 rooms |
 | Minesweeper | 6×6, 6 mines | 9×9, 15 mines | 12×12, 30 mines |
 | Country Road | 5×5, 6 rooms | 10×10, 20 rooms | 15×15, 49 rooms |
 
@@ -16,7 +16,7 @@ Each category also has a **variant** (Sudoku 2, Heyawake 2, Minesweeper 2, Count
 | Sudoku 2 | 9×9, 28 clues | 9×9, 24 clues | 9×9, 20 clues |
 | Heyawake 2 | 8×8, 7 shaded | 8×8, 18 shaded | 17×13, 64 shaded |
 | Minesweeper 2 | 6×6, 6 mines | 9×9, 15 mines | 12×12, 30 mines |
-| Country Road 2 | 5×5, 16 lines | 10×10, 72 lines | 12×12, 104 lines |
+| Country Road 2 | 10×10, 78 lines | 18×10, 112 lines | 10×18, 130 lines |
 
 Usage: `python custom_<game>.py [easy|medium|hard]` (defaults to easy)
 
